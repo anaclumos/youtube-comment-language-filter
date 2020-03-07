@@ -10,9 +10,8 @@ function containsUnicode(str, startUnicode, endUnicode) {
 function removeNonKRComments() {
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   var comment;
-
   for (var x = 0; x < commentList.length; x++) {
-    comment = commentList[x].childNodes[1].childNodes[1].childNodes[3].childNodes[3].innerText;
+    comment = commentList[x].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
     if (!containsUnicode(comment, "가", "힣")) {
       commentList[x].parentNode.removeChild(commentList[x]);
       x--;
