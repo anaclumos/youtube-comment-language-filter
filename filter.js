@@ -35,4 +35,3 @@ const callback = function (mutationsList, observer) {
 
 const observer = new MutationObserver(callback);
 observer.observe(target, config);
-removeNonKRComments();
