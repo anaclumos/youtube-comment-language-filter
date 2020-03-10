@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "YouTube Comment Language Filter",
+  "version": "1.0.0",
+  "description": "Only show YouTube comments in selected languages",
+  "author": "Sunghyun Cho",
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "scripts/content.js"
+      ],
+      "matches": [
+        "https://*.youtube.com/*"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "homepage_url": "https://chosunghyun.com/youtube-comment-language-filter",
+  "options_page": "pages/options.html",
+  "options_ui": {
+    "chrome_style": true,
+    "page": "pages/options.html"
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "short_name": "YCLF"
+}
