@@ -16,7 +16,7 @@
         "scripts/content.js"
       ],
       "matches": [
-        "https://*.youtube.com/*"
+        "https://*.youtube.com/watch*"
       ],
       "run_at": "document_end"
     }
