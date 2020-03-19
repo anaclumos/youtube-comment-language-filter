@@ -72,6 +72,16 @@ window.onload = () => {
 
   CLFButton.textContent = "한글을 포함한 댓글만 보기";
   CLFFooter.textContent = "한글을 포함한 댓글만 보는 중입니다.";
+var loc = window.location.href;
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === 'page moved!') {
+    loc = request.url;
+    resetComments();
+    // console.log("새 웹사이트 감지! " + loc);
+    main(loc);
+  }
+});
 
   CLFButton.addEventListener('click', () => {
     onlyShowHangulComments();
