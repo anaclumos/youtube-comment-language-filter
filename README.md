@@ -1,5 +1,6 @@
+<img src = "extension/images/min-icon512.png" width = "128px" alt = "Available in the Chrome Web Store">
+
+
 # YouTube Comment Language Filter
 
-![YouTube Comment Language Filter Icon](extension/images/min-icon48.png)
-
-![Available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_496x150.png)
+<img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" width = "300px" alt = "Available in the Chrome Web Store">
