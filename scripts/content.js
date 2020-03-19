@@ -9,15 +9,18 @@ async function wait(ms) {
 function containsHangul(string) {
   var stlen = string.length;
   var i = 0;
+  console.log("string is " + string);
   for (i = 0; i < stlen; i++) {
     if (44032 <= string.charCodeAt(i) && string.charCodeAt(i) <= 55203) {
+      console.log("판정: 이건 한글이다. 왜? " + i + "번째인 '" + string.substring(i, i + 1) + "' 한글이라..");
       return true;
     }
   }
+  console.log("이건 한글이 아닌듯~");
   return false;
 }
 
-function onlyShowHangulComments() {
+function showHangulComments() {
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   for (var comment of commentList) {
     if (comment.id === "") {
@@ -30,48 +33,95 @@ function onlyShowHangulComments() {
     }
     if (comment.id === "no-hangul") {
       comment.style = "display: none";
-      console.log("hided one comment.");
+      // console.log("hided one comment.");
     }
   }
 }
 
+function showAllComments() {
+  var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
+  for (var comment of commentList) {
+    comment.style = "";
+  }
+}
+
+function resetComments() {
+  var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
+  for (var comment of commentList) {
+    comment.id = "";
+  }
+  console.log("Reseted all comments.");
+  console.log(commentList);
+}
 var observer = new MutationObserver((mutationList) => {
-  onlyShowHangulComments();
+  showHangulComments();
 });
 
-window.onload = () => {
-  console.log("onload");
-  var CLFButton = document.createElement('button');
-  CLFButton.id = "CLFButton";
-  CLFButton.style =
-    `position: relative; box-sizing: border-box; border: none; border-radius: 2px; padding: 10px 16px; min-width: 64px;
-   vertical-align: middle; text-align: center; font-family: Roboto, Arial, sans-serif; font-size: 14px;
-   font-weight: 500; outline: none; cursor: pointer; background-color: transparent; color: rgb(133, 133, 133);`;
-  var CLFFooter = document.createElement('h2');
-  CLFFooter.id = "CLFFooter";
-  CLFFooter.style = "text-align: center; color: rgb(133, 133, 133); margin-bottom: 100px;";
+var CLFInterfaceShown = false;
+var CLFOn = false;
 
-  var meta = document.getElementById("meta");;
-  var primary = document.getElementById("primary");;
+async function main(loc) {
+  if (loc.substring(0, 29) == "https://www.youtube.com/watch") {
+    if (!CLFInterfaceShown) {
+      // console.log("적용할 도메인이다! " + loc);
+      var CLFButton = document.createElement('button');
+      CLFButton.id = "CLFButton";
+      CLFButton.style =
+        `position: relative; box-sizing: border-box; border: none; border-radius: 2px; padding: 10px 16px; min-width: 64px;
+         vertical-align: middle; text-align: center; font-family: Roboto, Arial, sans-serif; font-size: 14px;
+         font-weight: 500; outline: none; cursor: pointer; background-color: transparent; color: rgb(133, 133, 133);`;
+      var CLFFooter = document.createElement('h2');
+      CLFFooter.id = "CLFFooter";
+      CLFFooter.style = "text-align: center; color: rgb(133, 133, 133); margin-bottom: 100px;";
 
-  while (meta === undefined) {
-    wait(2000);
-    meta = document.getElementById("meta");
+      var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+      while (meta.className === undefined) {
+        // console.log("meta not found");
+        wait(2000);
+        meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      }
+
+      while (primary.className === undefined) {
+        // console.log("primary not found");
+        wait(2000);
+        primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      }
+
+      // console.log(meta);
+      // console.log(primary);
+
+      meta.append(CLFButton);
+      primary.append(CLFFooter);
+      CLFInterfaceShown = true;
+
+      CLFButton.textContent = "한글이 포함된 댓글만 보기";
+      CLFFooter.textContent = "전체 댓글을 보는 중입니다.";
+
+      CLFButton.addEventListener('click', () => {
+        if (CLFOn) {
+          CLFOn = false;
+          showAllComments();
+          CLFButton.textContent = "한글이 포함된 댓글만 보기";
+          CLFFooter.textContent = "전체 댓글을 보는 중입니다.";
+          observer.disconnect();
+        } else {
+          CLFOn = true;
+          showHangulComments();
+          CLFButton.textContent = "전체 언어 보기";
+          CLFFooter.textContent = "한글이 포함된 댓글만 보는 중입니다.";
+          const config = { attributes: false, childList: true, subtree: true };
+          const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+          observer.observe(target, config);
+        }
+      });
+    } else {
+      // console.log("적용할 도메인이 아닌듯: " + loc);
+    }
   }
+}
 
-  while (primary === undefined) {
-    wait(2000);
-    primary = document.getElementById("primary");
-  }
-
-  console.log("meta is " + meta);
-  console.log("primary is " + primary);
-
-  meta.append(CLFButton);
-  primary.append(CLFFooter);
-
-  CLFButton.textContent = "한글을 포함한 댓글만 보기";
-  CLFFooter.textContent = "한글을 포함한 댓글만 보는 중입니다.";
 var loc = window.location.href;
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -83,10 +133,4 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-  CLFButton.addEventListener('click', () => {
-    onlyShowHangulComments();
-    const config = { attributes: false, childList: true, subtree: true };
-    const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-    observer.observe(target, config);
-  });
-}
+main(loc);
