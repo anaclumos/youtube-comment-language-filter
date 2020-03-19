@@ -5,19 +5,13 @@
   "description": "Only show YouTube comments in selected languages",
   "author": "Sunghyun Cho",
   "background": {
-    "scripts": [
-      "scripts/background.js"
-    ],
+    "scripts": ["scripts/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
-      "js": [
-        "scripts/content.js"
-      ],
-      "matches": [
-        "https://*.youtube.com/watch*"
-      ],
+      "js": ["scripts/content.js"],
+      "matches": ["https://*.youtube.com/watch*"],
       "run_at": "document_end"
     }
   ],
@@ -27,8 +21,7 @@
     "chrome_style": true,
     "page": "pages/options.html"
   },
-  "permissions": [
-    "tabs"
-  ],
-  "short_name": "YCLF"
+  "permissions": ["tabs"],
+  "short_name": "YCLF",
+  "web_accessible_resources": []
 }
