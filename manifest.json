@@ -1,6 +1,15 @@
 {
   "manifest_version": 2,
   "name": "YouTube Comment Language Filter",
+  "icons": {
+    "16": "images/min-icon16.png",
+    "24": "images/min-icon24.png",
+    "32": "images/min-icon32.png",
+    "48": "images/min-icon48.png",
+    "128": "images/min-icon128.png",
+    "512": "images/min-icon512.png",
+    "1024": "images/min-icon1024.png"
+  },
   "version": "1.0.0",
   "description": "Only show YouTube comments in selected languages",
   "author": "Sunghyun Cho",
