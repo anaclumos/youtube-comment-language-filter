@@ -20,9 +20,14 @@ function containsHangul(string) {
   return false;
 }
 
-function showHangulComments() {
+function onlyShowHangulComments() {
+  filteredLoc = loc;
+  console.log("filteredLoc is now " + filteredLoc);
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
+  var filterNum = 0;
   for (var comment of commentList) {
+    filterNum++;
+    CLFFooter.textContent = filterNum + "개의 댓글을 분석했습니다...";
     if (comment.id === "") {
       var commentString = comment.childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
       if (containsHangul(commentString)) {
@@ -33,7 +38,7 @@ function showHangulComments() {
     }
     if (comment.id === "no-hangul") {
       comment.style = "display: none";
-      // console.log("hided one comment.");
+      console.log("hided one comment.");
     }
   }
 }
@@ -45,7 +50,7 @@ function showAllComments() {
   }
 }
 
-function resetComments() {
+function resetAllCommentID() {
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   for (var comment of commentList) {
     comment.id = "";
@@ -53,8 +58,9 @@ function resetComments() {
   console.log("Reseted all comments.");
   console.log(commentList);
 }
+
 var observer = new MutationObserver((mutationList) => {
-  showHangulComments();
+  onlyShowHangulComments();
 });
 
 var CLFInterfaceShown = false;
@@ -62,8 +68,15 @@ var CLFOn = false;
 
 async function main(loc) {
   if (loc.substring(0, 29) == "https://www.youtube.com/watch") {
+    if (filteredLoc != loc && CLFInterfaceShown) {
+      console.log("새로운 동영상으로 들어왔군요! 필터 리셋합니다.")
+      resetAllCommentID();
+      showAllComments();
+      CLFButton.textContent = "한글 댓글";
+      CLFFooter.textContent = "전체 댓글입니다.";
+    }
     if (!CLFInterfaceShown) {
-      // console.log("적용할 도메인이다! " + loc);
+      console.log("적용할 도메인이다! " + loc);
       var CLFButton = document.createElement('button');
       CLFButton.id = "CLFButton";
       CLFButton.style =
@@ -78,57 +91,63 @@ async function main(loc) {
       var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
       while (meta.className === undefined) {
-        // console.log("meta not found");
+        console.log("meta not found");
         wait(2000);
         meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       }
 
       while (primary.className === undefined) {
-        // console.log("primary not found");
+        console.log("primary not found");
         wait(2000);
         primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       }
 
-      // console.log(meta);
-      // console.log(primary);
+      console.log(meta);
+      console.log(primary);
 
       meta.append(CLFButton);
       primary.append(CLFFooter);
       CLFInterfaceShown = true;
 
-      CLFButton.textContent = "한글이 포함된 댓글만 보기";
-      CLFFooter.textContent = "전체 댓글을 보는 중입니다.";
+      CLFButton.textContent = "한글 댓글";
+      CLFFooter.textContent = "전체 댓글입니다.";
 
       CLFButton.addEventListener('click', () => {
         if (CLFOn) {
           CLFOn = false;
           showAllComments();
-          CLFButton.textContent = "한글이 포함된 댓글만 보기";
-          CLFFooter.textContent = "전체 댓글을 보는 중입니다.";
+          CLFButton.textContent = "한글 댓글";
+          CLFFooter.textContent = "전체 댓글입니다.";
           observer.disconnect();
         } else {
           CLFOn = true;
-          showHangulComments();
-          CLFButton.textContent = "전체 언어 보기";
-          CLFFooter.textContent = "한글이 포함된 댓글만 보는 중입니다.";
+          onlyShowHangulComments();
+          CLFButton.textContent = "전체 댓글";
           const config = { attributes: false, childList: true, subtree: true };
           const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
           observer.observe(target, config);
         }
       });
     } else {
-      // console.log("적용할 도메인이 아닌듯: " + loc);
+      console.log("적용할 도메인이 아닌듯: " + loc);
     }
   }
 }
 
 var loc = window.location.href;
+var filteredLoc = "";
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  observer.disconnect();
   if (request.message === 'page moved!') {
+    if (CLFInterfaceShown) {
+      CLFButton.textContent = "한글 댓글";
+      CLFFooter.textContent = "전체 댓글입니다.";
+    }
     loc = request.url;
-    resetComments();
-    // console.log("새 웹사이트 감지! " + loc);
+    CLFOn = false;
+    resetAllCommentID();
+    console.log("새 웹사이트 감지! " + loc);
     main(loc);
   }
 });
