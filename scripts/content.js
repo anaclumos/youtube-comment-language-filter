@@ -6,7 +6,7 @@ async function wait(ms) {
   await sleep(ms);
 }
 
-function containsHangul(string) {
+function containsSelectedLang(string) {
   var stlen = string.length;
   var i = 0;
   // console.log("string is " + string);
@@ -20,7 +20,7 @@ function containsHangul(string) {
   return false;
 }
 
-function onlyShowHangulComments() {
+function onlyShowSelectedLangComments() {
   filteredLoc = loc;
   // console.log("filteredLoc is now " + filteredLoc);
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
@@ -30,13 +30,13 @@ function onlyShowHangulComments() {
     CLFFooter.textContent = filterNum + "개의 댓글을 분석했습니다...";
     if (comment.id === "") {
       var commentString = comment.childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
-      if (containsHangul(commentString)) {
-        comment.id = "contains-hangul";
+      if (containsSelectedLang(commentString)) {
+        comment.id = "contains-SelectedLang";
       } else {
-        comment.id = "no-hangul";
+        comment.id = "no-SelectedLang";
       }
     }
-    if (comment.id === "no-hangul") {
+    if (comment.id === "no-SelectedLang") {
       comment.style = "display: none";
       // console.log("hided one comment.");
     }
@@ -60,7 +60,7 @@ function resetAllCommentID() {
 }
 
 var observer = new MutationObserver((mutationList) => {
-  onlyShowHangulComments();
+  onlyShowSelectedLangComments();
 });
 
 var CLFInterfaceShown = false;
@@ -121,7 +121,7 @@ async function main(loc) {
           observer.disconnect();
         } else {
           CLFOn = true;
-          onlyShowHangulComments();
+          onlyShowSelectedLangComments();
           CLFButton.textContent = "전체 댓글";
           const config = { attributes: false, childList: true, subtree: true };
           const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
