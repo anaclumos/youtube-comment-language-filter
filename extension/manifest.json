@@ -24,7 +24,7 @@
       "run_at": "document_end"
     }
   ],
-  "homepage_url": "https://chosunghyun.com/youtube-comment-language-filter",
+  "homepage_url": "https://github.com/anaclumos/youtube-comment-language-filter",
   "options_page": "pages/options.html",
   "options_ui": {
     "chrome_style": true,
