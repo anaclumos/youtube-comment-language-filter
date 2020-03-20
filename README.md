@@ -1,4 +1,4 @@
-<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni">
+<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
 <img src = "extension/images/min-icon512.png" width = "128px">
 </a>
 
@@ -13,7 +13,7 @@
 ## How to install
 
 ### Web Store
-<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni">
+<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
 <img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" width = "300px" alt = "Available in the Chrome Web Store">
 </a>
 
