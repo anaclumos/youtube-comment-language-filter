@@ -1,11 +1,14 @@
-<img src = "extension/images/min-icon512.png" width = "128px" alt = "Available in the Chrome Web Store">
-
+<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni">
+<img src = "extension/images/min-icon512.png" width = "128px">
+</a>
 
 # YouTube Comment Language Filter
 
 ## Installation
 
+<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni">
 <img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" width = "300px" alt = "Available in the Chrome Web Store">
+</a>
 
 ### Manual Install
 1. Download this git repository.
