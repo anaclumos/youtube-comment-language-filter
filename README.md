@@ -4,13 +4,20 @@
 
 # YouTube Comment Language Filter
 
-## Installation
+## Currently supported
 
+* Korean (한국어, 한글)
+* [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
+* Contributions are welcomed!
+
+## How to install
+
+### Web Store
 <a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni">
 <img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" width = "300px" alt = "Available in the Chrome Web Store">
 </a>
 
-### Manual Install
+### Manual install
 1. Download this git repository.
 1. Open the Chrome Browser.
 1. Open [chrome://extensions](chrome://extensions).
