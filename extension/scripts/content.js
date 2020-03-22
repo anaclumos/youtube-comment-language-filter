@@ -80,22 +80,22 @@ async function main(loc) {
         AllSelect.value = "All";
         AllSelect.innerHTML = "All";
         CLFSelect.appendChild(AllSelect);
-        if (result.English) {
+        if (!result.English) {
           var EnglishSelect = document.createElement("option");
           EnglishSelect.value = "English";
           EnglishSelect.innerHTML = "English";
           CLFSelect.appendChild(EnglishSelect);
-        } if (result.Korean) {
+        } if (!result.Korean) {
           var KoreanSelect = document.createElement("option");
           KoreanSelect.value = "Korean";
           KoreanSelect.innerHTML = "Korean (한국어)";
           CLFSelect.appendChild(KoreanSelect);
-        } if (result.Japanese) {
+        } if (!result.Japanese) {
           var JapaneseSelect = document.createElement("option");
           JapaneseSelect.value = "Japanese";
           JapaneseSelect.innerHTML = "Japanese (日本語)";
           CLFSelect.appendChild(JapaneseSelect);
-        } if (result.Chinese) {
+        } if (!result.Chinese) {
           var ChineseSelect = document.createElement("option");
           ChineseSelect.value = "Chinese";
           ChineseSelect.innerHTML = "Chinese (中文)";
