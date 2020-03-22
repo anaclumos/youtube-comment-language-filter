@@ -1,9 +1,23 @@
 * {
   font-family: -apple-system, system-ui, "Inter", "segoe ui", Helvetica, Arial,
     sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
-  min-width: 300px;
-  text-decoration: none;
+  min-width: 200px;
   color: black;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+label {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 a:visited {
