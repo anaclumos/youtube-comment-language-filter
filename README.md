@@ -6,7 +6,11 @@
 
 ## Currently supported
 
-* Korean (한국어, 한글)
+In alphabetical order,
+* Chinese (中文)
+* English
+* Japanese (日本語)
+* Korean (한국어)
 * [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
 * Contributions are welcomed!
 
