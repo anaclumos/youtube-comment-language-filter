@@ -3,6 +3,7 @@ var shownCommentNum = 0;
 var CLFSelect = document.createElement('select');
 CLFSelect.id = "CLFSelect";
 var CLFFooter = document.createElement('h2');
+var CLFHeader = document.createElement('h2');
 var CLFInterfaceShown = false;
 var observer = new MutationObserver((mutationList) => {
   observerRemoveComments();
@@ -37,10 +38,10 @@ function onlyShow(StartCharset, EndCharset) {
     CLFFooter.textContent = "Analyzed " + commentNum + " comments, " + shownCommentNum + " comments shown.";
     var commentString = commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
-      console.log("이거 불합격 = " + commentString);
+      // console.log("이거 불합격 = " + commentString);
       commentList[i].style = "display: none";
     } else {
-      console.log("이거 합격 = " + commentString);
+      // console.log("이거 합격 = " + commentString);
       shownCommentNum++;
     }
   }
@@ -55,18 +56,18 @@ function showAllComments() {
 
 function observerRemoveComments() {
   if (CLFSelect.value == "All") {
-    console.log("Observer ALL");
+    // console.log("Observer ALL");
   } else if (CLFSelect.value == "English") {
-    console.log("Observer Eng");
+    // console.log("Observer Eng");
     onlyShow([65, 97], [90, 122]);
   } else if (CLFSelect.value == "Korean") {
-    console.log("Observer Kor");
+    // console.log("Observer Kor");
     onlyShow([0xac00], [0xd7a3]);
   } else if (CLFSelect.value == "Japanese") {
-    console.log("Observer Jap");
+    // console.log("Observer Jap");
     onlyShow([0x3040], [0x30ff]);
   } else if (CLFSelect.value == "Chinese") {
-    console.log("Observer Chi");
+    // console.log("Observer Chi");
     onlyShow([0x4e00], [0x9FFF]);
   }
 }
@@ -87,23 +88,25 @@ async function main(loc) {
         } if (result.Korean) {
           var KoreanSelect = document.createElement("option");
           KoreanSelect.value = "Korean";
-          KoreanSelect.innerHTML = "Korean";
+          KoreanSelect.innerHTML = "Korean (한국어)";
           CLFSelect.appendChild(KoreanSelect);
         } if (result.Japanese) {
           var JapaneseSelect = document.createElement("option");
           JapaneseSelect.value = "Japanese";
-          JapaneseSelect.innerHTML = "Japanese";
+          JapaneseSelect.innerHTML = "Japanese (日本語)";
           CLFSelect.appendChild(JapaneseSelect);
         } if (result.Chinese) {
           var ChineseSelect = document.createElement("option");
           ChineseSelect.value = "Chinese";
-          ChineseSelect.innerHTML = "Chinese";
+          ChineseSelect.innerHTML = "Chinese (中文)";
           CLFSelect.appendChild(ChineseSelect);
         }
       });
 
+      CLFHeader.id = "CLFHeader";
+      CLFHeader.style = "color: rgb(133, 133, 133); margin-bottom: 20px; margin-top: 20px; font-weight: 500;";
       CLFFooter.id = "CLFFooter";
-      CLFFooter.style = "text-align: center; color: rgb(133, 133, 133); margin-bottom: 100px;";
+      CLFFooter.style = "text-align: center; color: rgb(133, 133, 133); margin-bottom: 100px; font-weight: 500;";
 
       var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -116,15 +119,18 @@ async function main(loc) {
         wait(2000);
         primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       }
+      
+      meta.append(CLFHeader);
       meta.append(CLFSelect);
       primary.append(CLFFooter);
       CLFInterfaceShown = true;
 
+      CLFHeader.textContent = "Comment Language Filter";
       CLFFooter.textContent = "Filter Off";
 
       CLFSelect.addEventListener("change", function () {
         if (CLFSelect.value == "All") {
-          console.log("Setting Changed to ALL");
+          // console.log("Setting Changed to ALL");
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
@@ -134,25 +140,25 @@ async function main(loc) {
           observer.observe(target, config);
         }
         if (CLFSelect.value == "English") {
-          console.log("Setting Changed to Eng");
+          // console.log("Setting Changed to Eng");
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
           onlyShow([65, 97], [90, 122]);
         } else if (CLFSelect.value == "Korean") {
-          console.log("Setting Changed to Kor");
+          // console.log("Setting Changed to Kor");
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
           onlyShow([0xac00], [0xd7a3]);
         } else if (CLFSelect.value == "Japanese") {
-          console.log("Setting Changed to Jap");
+          // console.log("Setting Changed to Jap");
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
           onlyShow([0x3040], [0x30ff]);
         } else if (CLFSelect.value == "Chinese") {
-          console.log("Setting Changed to Chi");
+          // console.log("Setting Changed to Chi");
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
