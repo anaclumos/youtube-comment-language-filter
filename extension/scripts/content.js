@@ -10,13 +10,8 @@ var observer = new MutationObserver((mutationList) => {
 });
 var loc = window.location.href;
 
-async function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function wait(ms) {
-  await sleep(ms);
-}
+async function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+async function wait(ms) { await sleep(ms); }
 
 function containsSelectedLang(string, StartCharset, EndCharset) {
   var stlen = string.length;
@@ -80,22 +75,22 @@ async function main(loc) {
         AllSelect.value = "All";
         AllSelect.innerHTML = "All";
         CLFSelect.appendChild(AllSelect);
-        if (!result.English) {
+        if (!result.EnglishDisabled) {
           var EnglishSelect = document.createElement("option");
           EnglishSelect.value = "English";
           EnglishSelect.innerHTML = "English";
           CLFSelect.appendChild(EnglishSelect);
-        } if (!result.Korean) {
+        } if (!result.KoreanDisabled) {
           var KoreanSelect = document.createElement("option");
           KoreanSelect.value = "Korean";
           KoreanSelect.innerHTML = "Korean (한국어)";
           CLFSelect.appendChild(KoreanSelect);
-        } if (!result.Japanese) {
+        } if (!result.JapaneseDisabled) {
           var JapaneseSelect = document.createElement("option");
           JapaneseSelect.value = "Japanese";
           JapaneseSelect.innerHTML = "Japanese (日本語)";
           CLFSelect.appendChild(JapaneseSelect);
-        } if (!result.Chinese) {
+        } if (!result.ChineseDisabled) {
           var ChineseSelect = document.createElement("option");
           ChineseSelect.value = "Chinese";
           ChineseSelect.innerHTML = "Chinese (中文)";
@@ -103,10 +98,11 @@ async function main(loc) {
         }
       });
 
+      CLFHeader.classList.add("select-text");
       CLFHeader.id = "CLFHeader";
-      CLFHeader.style = "color: rgb(133, 133, 133); margin-bottom: 20px; margin-top: 20px; font-weight: 500;";
+      CLFHeader.classList.add("CLFHeader");
       CLFFooter.id = "CLFFooter";
-      CLFFooter.style = "text-align: center; color: rgb(133, 133, 133); margin-bottom: 100px; font-weight: 500;";
+      CLFFooter.classList.add("CLFFooter");
 
       var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -123,6 +119,7 @@ async function main(loc) {
       meta.append(CLFHeader);
       meta.append(CLFSelect);
       primary.append(CLFFooter);
+      
       CLFInterfaceShown = true;
 
       CLFHeader.textContent = "Comment Language Filter";

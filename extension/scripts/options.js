@@ -6,11 +6,11 @@ window.onload = () => {
 }
 
 function storeSetting() {
-  const EnglishEnabled = document.getElementById("lang-english-checkbox").checked;
-  const KoreanEnabled = document.getElementById("lang-korean-checkbox").checked;
-  const JapaneseEnabled = document.getElementById("lang-japanese-checkbox").checked;
-  const ChineseEnabled = document.getElementById("lang-chinese-checkbox").checked;
-  const setting = { English: EnglishEnabled, Korean: KoreanEnabled, Japanese: JapaneseEnabled, Chinese: ChineseEnabled };
+  const EnglishDisabled = !document.getElementById("lang-english-checkbox").checked;
+  const KoreanDisabled = !document.getElementById("lang-korean-checkbox").checked;
+  const JapaneseDisabled = !document.getElementById("lang-japanese-checkbox").checked;
+  const ChineseDisabled = !document.getElementById("lang-chinese-checkbox").checked;
+  const setting = { EnglishDisabled: EnglishDisabled, KoreanDisabled: KoreanDisabled, JapaneseDisabled: JapaneseDisabled, ChineseDisabled: ChineseDisabled };
   chrome.storage.sync.set(setting, () => {
     console.log("Stored", setting);
     document.getElementById("save-button").innerHTML = "Saved!"
@@ -23,9 +23,9 @@ function storeSetting() {
 function checkSetting() {
   chrome.storage.sync.get(['English', 'Korean', 'Japanese', 'Chinese'], (result) => {
     console.log(result);
-    document.getElementById("lang-english-checkbox").checked = result.English;
-    document.getElementById("lang-korean-checkbox").checked = result.Korean;
-    document.getElementById("lang-japanese-checkbox").checked = result.Japanese;
-    document.getElementById("lang-chinese-checkbox").checked = result.Chinese;
+    document.getElementById("lang-english-checkbox").checked = !result.EnglishDisabled;
+    document.getElementById("lang-korean-checkbox").checked = !result.KoreanDisabled;
+    document.getElementById("lang-japanese-checkbox").checked = !result.JapaneseDisabled;
+    document.getElementById("lang-chinese-checkbox").checked = !result.ChineseDisabled;
   });
 }
