@@ -22,9 +22,10 @@
   },
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
+      "js": ["./scripts/content.js"],
       "matches": ["https://*.youtube.com/*"],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "css" : ["./inject.css"]
     }
   ],
   "homepage_url": "https://github.com/anaclumos/youtube-comment-language-filter",
