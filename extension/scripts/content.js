@@ -35,7 +35,7 @@ function onlyShow(StartCharset, EndCharset) {
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   for (var i = commentNum; i < commentList.length; i++) {
     commentNum++;
-    CLFFooter.textContent = "Analyzed " + commentNum + " comments, " + shownCommentNum + " comments shown.";
+    CLFFooter.textContent = commentNum + " comments analyzed, " + shownCommentNum + " comments shown.";
     var commentString = commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
       // console.log("이거 불합격 = " + commentString);
@@ -119,7 +119,7 @@ async function main(loc) {
         wait(2000);
         primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
       }
-      
+
       meta.append(CLFHeader);
       meta.append(CLFSelect);
       primary.append(CLFFooter);

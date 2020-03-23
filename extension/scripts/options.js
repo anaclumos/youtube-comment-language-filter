@@ -13,7 +13,10 @@ function storeSetting() {
   const setting = { English: EnglishEnabled, Korean: KoreanEnabled, Japanese: JapaneseEnabled, Chinese: ChineseEnabled };
   chrome.storage.sync.set(setting, () => {
     console.log("Stored", setting);
-    alert("Saved. Refresh YouTube to see the change.");
+    document.getElementById("save-button").innerHTML = "Saved!"
+    setTimeout(function () {
+      document.getElementById("save-button").innerHTML = "Save"
+    }, 1000);
   });
 }
 

@@ -20,7 +20,10 @@ label {
   padding-bottom: 5px;
 }
 
+a {
+  color: black;
+}
+
 a:visited {
   text-decoration: none;
-  color: black;
 }
