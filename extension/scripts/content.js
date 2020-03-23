@@ -50,7 +50,7 @@ function showAllComments() {
 
 function observerRemoveComments() {
   // console.log("position 5");
-  if (CLFSelect.value == "All") { 
+  if (CLFSelect.value == "All") {
     // console.log("Observer ALL");
   } else if (CLFSelect.value == "English") {
     // console.log("Observer Eng");
