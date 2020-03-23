@@ -70,7 +70,7 @@ function observerRemoveComments() {
 async function main(loc) {
   if (loc.substring(0, 29) == "https://www.youtube.com/watch") {
     if (!CLFInterfaceShown) {
-      chrome.storage.sync.get(['EnglishDisabled', 'EnglishDisabled', 'EnglishDisabled', 'EnglishDisabled'], (result) => {
+      chrome.storage.sync.get(['EnglishDisabled', 'KoreanDisabled', 'JapaneseDisabled', 'ChineseDisabled'], (result) => {
         var AllSelect = document.createElement("option");
         AllSelect.value = "All";
         AllSelect.innerHTML = "All";
