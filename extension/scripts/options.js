@@ -16,12 +16,12 @@ function storeSetting() {
     document.getElementById("save-button").innerHTML = "Saved!"
     setTimeout(function () {
       document.getElementById("save-button").innerHTML = "Save"
-    }, 1000);
+    }, 2000);
   });
 }
 
 function checkSetting() {
-  chrome.storage.sync.get(['English', 'Korean', 'Japanese', 'Chinese'], (result) => {
+  chrome.storage.sync.get(['EnglishDisabled', 'KoreanDisabled', 'JapaneseDisabled', 'ChineseDisabled'], (result) => {
     console.log(result);
     document.getElementById("lang-english-checkbox").checked = !result.EnglishDisabled;
     document.getElementById("lang-korean-checkbox").checked = !result.KoreanDisabled;
