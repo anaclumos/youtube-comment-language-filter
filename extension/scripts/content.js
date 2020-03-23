@@ -6,14 +6,13 @@ var CLFFooter = document.createElement('h2');
 var CLFHeader = document.createElement('h2');
 var CLFInterfaceShown = false;
 var observer = new MutationObserver((mutationList) => {
+  // console.log("position 1");
   observerRemoveComments();
 });
 var loc = window.location.href;
 
-async function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
-async function wait(ms) { await sleep(ms); }
-
 function containsSelectedLang(string, StartCharset, EndCharset) {
+  // console.log("position 2");
   var stlen = string.length;
   var i = 0;
   for (i = 0; i < stlen; i++) {
@@ -27,22 +26,22 @@ function containsSelectedLang(string, StartCharset, EndCharset) {
 }
 
 function onlyShow(StartCharset, EndCharset) {
+  // console.log("position 3");
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   for (var i = commentNum; i < commentList.length; i++) {
     commentNum++;
     CLFFooter.textContent = commentNum + " comments analyzed, " + shownCommentNum + " comments shown.";
     var commentString = commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
-      // console.log("이거 불합격 = " + commentString);
       commentList[i].style = "display: none";
     } else {
-      // console.log("이거 합격 = " + commentString);
       shownCommentNum++;
     }
   }
 }
 
 function showAllComments() {
+  // console.log("position 4");
   var commentList = document.getElementsByTagName("ytd-comment-thread-renderer");
   for (var comment of commentList) {
     comment.style = "";
@@ -50,7 +49,8 @@ function showAllComments() {
 }
 
 function observerRemoveComments() {
-  if (CLFSelect.value == "All") {
+  // console.log("position 5");
+  if (CLFSelect.value == "All") { 
     // console.log("Observer ALL");
   } else if (CLFSelect.value == "English") {
     // console.log("Observer Eng");
@@ -68,7 +68,9 @@ function observerRemoveComments() {
 }
 
 async function main(loc) {
+  // console.log("position 6");
   if (loc.substring(0, 29) == "https://www.youtube.com/watch") {
+    // console.log("position 7");
     if (!CLFInterfaceShown) {
       chrome.storage.sync.get(['EnglishDisabled', 'KoreanDisabled', 'JapaneseDisabled', 'ChineseDisabled'], (result) => {
         var AllSelect = document.createElement("option");
@@ -96,6 +98,7 @@ async function main(loc) {
           ChineseSelect.innerHTML = "Chinese (中文)";
           CLFSelect.appendChild(ChineseSelect);
         }
+        // console.log("position 8");
       });
 
       CLFHeader.classList.add("select-text");
@@ -108,24 +111,29 @@ async function main(loc) {
       var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
       while (meta === null || meta.className === undefined) {
-        wait(2000);
-        meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        // console.log("position 8");
+        setTimeout(function () {
+          meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        }, 2000);
       }
       while (primary === null || primary.className === undefined) {
-        wait(2000);
-        primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        // console.log("position 9");
+        setTimeout(function () {
+          primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        }, 2000);
       }
 
       meta.append(CLFHeader);
       meta.append(CLFSelect);
       primary.append(CLFFooter);
-      
+
       CLFInterfaceShown = true;
 
       CLFHeader.textContent = "Comment Language Filter";
       CLFFooter.textContent = "Filter Off";
-
+      // console.log("position 10");
       CLFSelect.addEventListener("change", function () {
+        // console.log("position 11")
         if (CLFSelect.value == "All") {
           // console.log("Setting Changed to ALL");
           showAllComments();
@@ -168,6 +176,7 @@ async function main(loc) {
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // console.log("position 12");
   if (request.message === 'page moved!') {
     if (CLFInterfaceShown) {
       document.getElementById("CLFSelect").selectedIndex = 0;
