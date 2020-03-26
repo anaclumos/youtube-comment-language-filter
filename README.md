@@ -6,11 +6,11 @@
 
 
 <a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
-<img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" height="100px" alt = "Available in the Chrome Web Store">
+<img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" height="75px" alt = "Available in the Chrome Web Store">
 </a>
 
 <a href = "https://addons.mozilla.org/addon/yclf/" target='_blank' rel='noopener'>
-<img src = "projfiles/firefox-addons-banner/min-Firefox-Get-The-Addon-Badge.png" height="100px" alt = "Available in the Chrome Web Store">
+<img src = "projfiles/firefox-addons-banner/min-Firefox-Get-The-Addon-Badge.png" height="75px" alt = "Available in the Firefox Addons Store">
 </a>
 
 ### Manual install
