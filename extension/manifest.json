@@ -1,5 +1,10 @@
 {
   "manifest_version": 2,
+  "applications": {
+    "gecko": {
+      "id": "yclf@chosunghyun.com"
+    }
+  },
   "name": "YouTube Comment Language Filter",
   "icons": {
     "16": "images/min-icon16.png",
@@ -10,7 +15,7 @@
     "512": "images/min-icon512.png",
     "1024": "images/min-icon1024.png"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Only see YouTube comments in selected languages",
   "author": "Sunghyun Cho",
   "background": {
@@ -25,12 +30,10 @@
       "js": ["./scripts/content.js"],
       "matches": ["https://*.youtube.com/*"],
       "run_at": "document_end",
-      "css" : ["./inject.css"]
+      "css": ["./inject.css"]
     }
   ],
   "homepage_url": "https://github.com/anaclumos/youtube-comment-language-filter",
-  "options_page": "pages/options.html",
   "permissions": ["tabs", "storage"],
-  "short_name": "YCLF",
-  "web_accessible_resources": []
+  "short_name": "YCLF"
 }
