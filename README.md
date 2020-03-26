@@ -1,6 +1,4 @@
-<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
 <img src = "extension/images/min-icon512.png" width = "128px">
-</a>
 
 # YouTube Comment Language Filter
 
