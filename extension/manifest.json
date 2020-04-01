@@ -1,10 +1,5 @@
 {
   "manifest_version": 2,
-  "applications": {
-    "gecko": {
-      "id": "yclf@chosunghyun.com"
-    }
-  },
   "name": "YouTube Comment Language Filter",
   "icons": {
     "16": "images/min-icon16.png",
@@ -15,7 +10,7 @@
     "512": "images/min-icon512.png",
     "1024": "images/min-icon1024.png"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Only see YouTube comments in selected languages",
   "author": "Sunghyun Cho",
   "background": {

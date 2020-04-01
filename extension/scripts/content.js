@@ -31,10 +31,12 @@ function onlyShow(StartCharset, EndCharset) {
   for (var i = commentNum; i < commentList.length; i++) {
     commentNum++;
     CLFFooter.textContent = commentNum + " comments analyzed, " + shownCommentNum + " comments shown.";
-    var commentString = commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText;
+    var commentString = commentList[i].childNodes[2].childNodes[2].childNodes[3].childNodes[3].childNodes[1].innerText;
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
+      // console.log("불합격임 " + commentString);
       commentList[i].style = "display: none";
     } else {
+      // console.log("합격 " + commentString);
       shownCommentNum++;
     }
   }
@@ -107,11 +109,11 @@ async function main(loc) {
       CLFFooter.id = "CLFFooter";
       CLFFooter.classList.add("CLFFooter");
 
-      var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-      var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+      primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
       while (meta === null || meta.className === undefined) {
-        // console.log("position 8");
+        // console.log("position 8.5");
         setTimeout(function () {
           meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
         }, 2000);
