@@ -2,7 +2,7 @@ html {
   font-family: -apple-system, system-ui, "Inter", "segoe ui", Helvetica, Arial,
     sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
   color: black;
-  min-width: 250px;
+  width: 200px;
 }
 
 button {
