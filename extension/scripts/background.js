@@ -1,7 +1,9 @@
 chrome.runtime.onInstalled.addListener(function (object) {
-  chrome.tabs.create({ url: "https://chosunghyun.com/youtube-comment-language-filter" }, function (tab) {
-    //console.log("");
-  });
+  if (object.reason === 'install') {
+    chrome.tabs.create({ url: "https://chosunghyun.com/youtube-comment-language-filter" }, function (tab) {
+      // console.log("New tab launched with http://yoursite.com/");
+    });
+  }
 });
 
 chrome.tabs.onUpdated.addListener(
