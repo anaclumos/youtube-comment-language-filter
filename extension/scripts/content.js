@@ -108,27 +108,6 @@ async function main(loc) {
       CLFHeader.classList.add("CLFHeader");
       CLFFooter.id = "CLFFooter";
       CLFFooter.classList.add("CLFFooter");
-
-      var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-      var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-
-      while (meta === null || meta.className === undefined) {
-        // console.log("position 8.5");
-        setTimeout(function () {
-          meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        }, 2000);
-      }
-      while (primary === null || primary.className === undefined) {
-        // console.log("position 9");
-        setTimeout(function () {
-          primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        }, 2000);
-      }
-
-      meta.append(CLFHeader);
-      meta.append(CLFSelect);
-      primary.append(CLFFooter);
-
       CLFInterfaceShown = true;
 
       CLFHeader.textContent = "Comment Language Filter";
@@ -142,8 +121,8 @@ async function main(loc) {
           commentNum = 0;
           shownCommentNum = 0;
         } else {
-          const config = { attributes: false, childList: true, subtree: true };
-          const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+          // const config = { attributes: false, childList: true, subtree: true };
+          // const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
           observer.observe(target, config);
         }
         if (CLFSelect.value == "English") {
@@ -172,6 +151,21 @@ async function main(loc) {
           onlyShow([0x4e00], [0x9FFF]);
         }
       });
+      (function insertEl() {
+        var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        if (meta != null && meta.className != undefined && primary != null && primary.className != undefined) {
+          // console.log("found meta and primary");
+          meta.append(CLFHeader);
+          meta.append(CLFSelect);
+          primary.append(CLFFooter);
+        } else {
+          // console.log("Couldn't find Meta or Primary. ");
+          // console.log("Meta is", meta);
+          // console.log("Primary is", primary)
+          setTimeout(insertEl, 500);
+        }
+      })();
     } else {
     }
   }
