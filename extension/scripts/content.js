@@ -53,6 +53,7 @@ function showAllComments() {
 function observerRemoveComments() {
   //console.log("position 5");
   if (CLFSelect.value == "All") {
+    CLFFooter.textContent = "Filter Off";
     //console.log("Observer ALL");
   } else if (CLFSelect.value == "English") {
     //console.log("Observer Eng");
@@ -132,6 +133,7 @@ async function main(loc) {
         //console.log("position 11")
         if (CLFSelect.value == "All") {
           //console.log("Setting Changed to ALL");
+          CLFFooter.textContent = "Filter Off";
           showAllComments();
           commentNum = 0;
           shownCommentNum = 0;
