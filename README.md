@@ -1,4 +1,4 @@
-<img src = "extension/images/min-icon512.png" width = 64px">
+<img src = "extension/images/min-icon512.png" width = "64px">
 
 # YouTube Comment Language Filter
 
