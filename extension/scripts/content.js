@@ -111,7 +111,7 @@ async function main(loc) {
       CLFFooter.classList.add("CLFFooter");
       CLFInterfaceShown = true;
 
-      CLFHeader.textContent = "Comments must include:";
+      CLFHeader.textContent = "Comments must include any character from:";
       CLFFooter.textContent = "Filter Off";
       //console.log("position 10");
       (function insertEl() {
