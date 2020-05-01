@@ -31,7 +31,7 @@ function onlyShow(StartCharset, EndCharset) {
   for (var i = commentNum; i < commentList.length; i++) {
     commentNum++;
     CLFFooter.textContent = commentNum + " comments analyzed, " + shownCommentNum + " comments shown.";
-    var commentString = commentList[i].childNodes[2].childNodes[2].childNodes[3].childNodes[3].childNodes[1].innerText;
+    var commentString = commentList[i].childNodes[2].childNodes[2].childNodes[3].childNodes[3].innerText;
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
       //console.log("불합격임 " + commentString);
       commentList[i].style = "display: none";
