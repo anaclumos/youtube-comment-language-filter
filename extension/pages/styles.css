@@ -1,8 +1,11 @@
 html {
-  font-family: -apple-system, system-ui, "Inter", "segoe ui", Helvetica, Arial,
-    sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
+  font-family: -apple-system, system-ui, "Inter", "segoe ui",
+    Helvetica, Arial, sans-serif, "apple color emoji",
+    "segoe ui emoji", "segoe ui symbol";
   color: black;
-  width: 200px;
+  display: inline-block;
+  min-width: 300px;
+  overflow: hidden;
 }
 
 button {

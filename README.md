@@ -14,10 +14,10 @@
 ## Currently supported
 
 In alphabetical order,
-* Chinese (中文)
+* Chinese characters (漢字)
 * English
-* Japanese (日本語)
-* Korean (한국어)
+* Japanese characters (仮名)
+* Korean characters (한글)
 * [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
 * Contributions are welcomed!
 
