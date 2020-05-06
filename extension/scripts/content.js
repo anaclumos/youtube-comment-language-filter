@@ -58,6 +58,8 @@ function onlyShow(StartCharset, EndCharset) {
 }
 
 function showAllComments() {
+  CLFFooter.textContent = "All comments";
+  document.getElementById("CLFSelect").selectedIndex = 0;
   commentNum = 0;
   shownCommentNum = 0;
   if (debug) {
@@ -105,6 +107,7 @@ async function main(loc) {
   if (loc.substring(0, 29) == "https://www.youtube.com/watch") {
     if (debug) {
       console.log("This page is the video page.");
+      console.log("CLFInterfaceShown is " + CLFInterfaceShown);
     }
     if (!CLFInterfaceShown) {
       chrome.storage.sync.get(['EnglishDisabled', 'KoreanDisabled', 'JapaneseDisabled', 'ChineseDisabled'], (result) => {
@@ -136,82 +139,85 @@ async function main(loc) {
         if (debug) {
           console.log("Successfully created the interface.");
         }
-      });
 
-      CLFHeader.classList.add("select-text");
-      CLFHeader.id = "CLFHeader";
-      CLFHeader.classList.add("CLFHeader");
-      CLFFooter.id = "CLFFooter";
-      CLFFooter.classList.add("CLFFooter");
-      CLFInterfaceShown = true;
-
-      CLFHeader.textContent = "Comments must include:";
-      CLFFooter.textContent = "All comments";
-      if (debug) {
-        console.log("Interface text set.");
-      }
-      (function insertEl() {
-        var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[7]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        if (meta != null && meta.className != undefined && primary != null && primary.className != undefined) {
-          if (debug) {
-            console.log("Found meta and primary tags.");
-          }
-          meta.append(CLFHeader);
-          meta.append(CLFSelect);
-          primary.append(CLFFooter);
-        } else {
-          if (debug) {
-            console.log("Unable to find meta and primary tags");
-            console.log("meta: ", meta);
-            console.log("primary: ", primary);
-          }
-          setTimeout(insertEl, 500);
-        }
-      })();
-      CLFSelect.addEventListener("change", function () {
+        CLFHeader.classList.add("select-text");
+        CLFHeader.id = "CLFHeader";
+        CLFHeader.classList.add("CLFHeader");
+        CLFFooter.id = "CLFFooter";
+        CLFFooter.classList.add("CLFFooter");
+        CLFHeader.textContent = "Comments must include:";
+        CLFFooter.textContent = "All comments";
         if (debug) {
-          console.log("The filter option is modified.");
+          console.log(CLFHeader);
+          console.log(CLFSelect);
+          console.log(CLFFooter);
+          console.log("Interface text set.");
         }
-        if (CLFSelect.value == "All") {
-          if (debug) {
-            console.log("The filter option is now All.");
+        (function insertEl() {
+          var meta = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/div[6]/div[3]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+          var primary = document.evaluate("/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+          if (meta != null && meta.className != undefined && primary != null && primary.className != undefined) {
+            if (debug) {
+              console.log("Found meta and primary tags.");
+              console.log("meta: ", meta);
+              console.log("primary: ", primary);
+            }
+            meta.append(CLFHeader);
+            meta.append(CLFSelect);
+            primary.append(CLFFooter);
+            CLFInterfaceShown = true;
+          } else {
+            if (debug) {
+              console.log("Unable to find meta and primary tags");
+              console.log("meta: ", meta);
+              console.log("primary: ", primary);
+            }
+            setTimeout(insertEl, 200);
           }
-          CLFFooter.textContent = "All comments";
-          observer.disconnect();
-          showAllComments();
-        } else {
-          const config = { attributes: false, childList: true, subtree: true };
-          const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-          observer.observe(target, config);
-        }
-        if (CLFSelect.value == "English") {
+        })();
+        CLFSelect.addEventListener("change", function () {
           if (debug) {
-            console.log("The filter option is now English.");
+            console.log("The filter option is modified.");
           }
-          showAllComments();
-          onlyShow([65, 97], [90, 122]);
-        } else if (CLFSelect.value == "Korean") {
-          if (debug) {
-            console.log("The filter option is now Korean.");
+          if (CLFSelect.value == "All") {
+            if (debug) {
+              console.log("The filter option is now All.");
+            }
+            CLFFooter.textContent = "All comments";
+            observer.disconnect();
+            showAllComments();
+          } else {
+            const config = { attributes: false, childList: true, subtree: true };
+            const target = document.evaluate('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+            observer.observe(target, config);
           }
-          showAllComments();
-          onlyShow([0xac00], [0xd7a3]);
-        } else if (CLFSelect.value == "Japanese") {
-          if (debug) {
-            console.log("The filter option is now Japanese.");
+          if (CLFSelect.value == "English") {
+            if (debug) {
+              console.log("The filter option is now English.");
+            }
+            showAllComments();
+            onlyShow([65, 97], [90, 122]);
+          } else if (CLFSelect.value == "Korean") {
+            if (debug) {
+              console.log("The filter option is now Korean.");
+            }
+            showAllComments();
+            onlyShow([0xac00], [0xd7a3]);
+          } else if (CLFSelect.value == "Japanese") {
+            if (debug) {
+              console.log("The filter option is now Japanese.");
+            }
+            showAllComments();
+            onlyShow([0x3040], [0x30ff]);
+          } else if (CLFSelect.value == "Chinese") {
+            if (debug) {
+              console.log("The filter option is now Chinese.");
+            }
+            showAllComments();
+            onlyShow([0x4e00], [0x9FFF]);
           }
-          showAllComments();
-          onlyShow([0x3040], [0x30ff]);
-        } else if (CLFSelect.value == "Chinese") {
-          if (debug) {
-            console.log("The filter option is now Chinese.");
-          }
-          showAllComments();
-          onlyShow([0x4e00], [0x9FFF]);
-        }
+        });
       });
-    } else {
     }
   }
 }
@@ -228,8 +234,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       if (debug) {
         console.log("The filtering interface is already injected.");
       }
-      document.getElementById("CLFSelect").selectedIndex = 0;
-      CLFFooter.textContent = "All comments";
     }
     loc = request.url;
     showAllComments();
