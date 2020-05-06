@@ -237,9 +237,9 @@ async function main(loc) {
           observer.observe(target, config);
         }
       });
-      showAllComments();
-      removeComments();
     }
+    showAllComments();
+    removeComments();
   }
 }
 
@@ -252,11 +252,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       console.log("Page has moved.");
     }
     loc = request.url;
+    main(loc);
     CLFFooter.textContent = "All comments";
     document.getElementById("CLFSelect").selectedIndex = 0;
     showAllComments();
     observer.disconnect();
-    main(loc);
   }
 });
 
