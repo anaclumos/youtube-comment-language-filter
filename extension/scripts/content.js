@@ -127,7 +127,7 @@ async function main(loc) {
         (result) => {
           var AllSelect = document.createElement("option");
           AllSelect.value = "All";
-          AllSelect.innerHTML = "Any characters";
+          AllSelect.innerHTML = "Any character";
           CLFSelect.appendChild(AllSelect);
           if (!result.EnglishDisabled) {
             var EnglishSelect = document.createElement("option");
