@@ -26,66 +26,43 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'UA-127955862-8');
   </script>
   <title>사용해주셔서 감사합니다.</title>
 </head>
 
-
 <body>
-  <!-- <article class="markdown-body">
-    <h4>Language</h4>
-    <select id="Language">
-      <option value="English">English</option>
-      <option value="Korean">Korean</option>
-    </select>
-  </article> -->
   <article class="markdown-body" id="main-text">
     <h1 id="toc_0">사용해주셔서 감사합니다.</h1>
-
     <p>이제 동영상과 댓글 사이에 댓글의 언어를 선택할 수 있는 옵션이 생겨날 것입니다.</p>
-
     <video width="250" autoplay loop muted>
       <source src="min-CLF.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-
     <p>모든 사람들이 자유롭게 사용할 수 있는 오픈 프로젝트는 처음인지라 부족한 점이 많습니다. 제 미숙한 실력으로 인해서 발생하는 불편함은 너그러이 양해해주시면 감사하겠습니다. 프로젝트에 대한 문의 사항,
       개선 사항이나 질문 등은 제 메일 <a href="mailto:mail@chosunghyun.com">mail@chosunghyun.com</a>으로 보내주시면 성심성의껏 답변해드리겠습니다.</p>
-
     <p>제대로 작동하지 않는 것 같은 경우에는 대부분 <strong>새로고침을 통해서 해결이 가능</strong>합니다.</p>
-
-    <h2 id="toc_1">Open Source</h2>
-
-    <p>YouTube Comment Language Filter는 100% 오픈소스 프로그램입니다. 인터페이스 개선 및 필터링 규칙 개선, 언어 추가 등의 업데이트를 통해 지속적으로 프로젝트를 개선할
-      계획입니다. 또한 현재 프로젝트는 <strong>언어 판별</strong>이 아닌 <strong>글자 판별</strong>에 의존하고 있습니다. 차후 업데이트를 통해 이를 개선할 예정입니다.</p>
+    <h2 id="toc_1">개발 비하인드 스토리</h2>
+    <p><a href="https://blog.chosunghyun.com/kr-yclf-part-1/" target="_blank" rel="noopener">블로그 포스트</a>를 확인해주세요 🚀</p>
+    <h2 id="toc_2">Open Source</h2>
     <a href="https://github.com/anaclumos/youtube-comment-language-filter" target="_blank" rel="noopener"><img
         src="./min-ghopensource.png" alt="Open-sourced on GitHub.com" width="150px"></a>
-
-    <h2 id="toc_2">권한 설명</h2>
-
+    <p>YouTube Comment Language Filter는 100% 오픈소스 프로그램입니다. 인터페이스 개선 및 필터링 규칙 개선, 언어 추가 등의 업데이트를 통해 지속적으로 프로젝트를 개선할
+      계획입니다. 또한 현재 프로젝트는 <strong>언어 판별</strong>이 아닌 <strong>글자 판별</strong>에 의존하고 있습니다. 차후 업데이트를 통해 이를 개선할 예정입니다.</p>
+    <h2 id="toc_3">권한 설명</h2>
     <p>페이지 방문 기록 및 개인 정보는 일체 수집하지 않으며 외부로 전송되지 않습니다. </p>
-
-    <h3 id="toc_3">1. Read and change your data on all youtube.com sites</h3>
-
+    <h3 id="toc_4">1. Read and change your data on all youtube.com sites</h3>
     <p>YouTube.com에서 데이터를 읽어들이고 변경할 수 있는 권한입니다. 이 권한은 댓글 필터 인터페이스를 삽입하고, 사용자의 선택에 따라 댓글을 언어별로 필터링하기 위해 사용됩니다.</p>
-
-    <h3 id="toc_4">2. Read your browsing history</h3>
-
+    <h3 id="toc_5">2. Read your browsing history</h3>
     <p>이 권한이 없으면 다음 시나리오들에서 확장 프로그램이 제대로 활성화되지 않습니다.</p>
-
     <ul>
       <li>YouTube.com 메인 페이지를 방문한 후 동영상을 클릭하여 동영상 페이지로 넘어가는 경우</li>
       <li>동영상에서 다른 동영상으로 넘어가는 경우</li>
     </ul>
-
     <p>원인은 YouTube가 새로운 페이지를 불러올 때 웹페이지 전체를 다시 불러오지 않고 댓글 등의 일부 컴포넌트를 재활용하기 때문입니다. 때문에 새로운 페이지로 넘어가더라도 Chrome 확장 프로그램은
       새로운 페이지로 이동한 것을 알지 못하고, 댓글을 잘못 필터링하거나 인터페이스가 사라지는 등의 에러가 발생하게 됩니다. 때문에 브라우징 기록을 읽어와 새로운 페이지로 넘어갔다는 것을 Chrome 확장
       프로그램에게 알려주는 것입니다. 우려하시는 바와 달리 방문 기록 등의 개인 정보는 수집하지 않습니다.</p>
-
     <p>이 권한을 사용하지 않고서도 Chrome 확장 프로그램이 제대로 동작할 수 있는지 지속적으로 연구해볼 계획입니다.</p>
-
   </article>
 </body>
 
