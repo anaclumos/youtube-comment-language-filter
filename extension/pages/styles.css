@@ -4,13 +4,13 @@ html {
     "segoe ui emoji", "segoe ui symbol";
   color: black;
   display: inline-block;
-  min-width: 300px;
+  min-width: 270px;
   overflow: hidden;
 }
 
 button {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 li {
