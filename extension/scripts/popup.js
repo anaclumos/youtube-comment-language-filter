@@ -8,7 +8,7 @@ window.onload = () => {
         document.execCommand("copy");
         document.body.removeChild(tempElem);
 
-        document.getElementById("copy-installation-url").innerText = "Copied to Clipboard!";
+        document.getElementById("copy-installation-url").innerText = "Copied!";
         setTimeout(function () {
             document.getElementById("copy-installation-url").innerText = "Copy Store Link";
         }, 2000);
