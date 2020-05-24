@@ -4,7 +4,7 @@ html {
     "segoe ui emoji", "segoe ui symbol";
   color: black;
   display: inline-block;
-  min-width: 270px;
+  min-width: 250px;
   overflow: hidden;
 }
 
@@ -15,11 +15,6 @@ button {
 }
 
 li {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-label {
   padding-top: 5px;
   padding-bottom: 5px;
 }
