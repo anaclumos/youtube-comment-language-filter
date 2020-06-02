@@ -1,6 +1,10 @@
 # Updates
 ##### This list is also available on [GitHub](https://github.com/anaclumos/youtube-comment-language-filter/tree/master/docs/updates)
 
+## v1.3.2
+* June 2, 2020
+* Added: Option to hide update notifications
+
 ## v1.3.1
 * June 1, 2020
 * Added: Copy Firefox Link Button
