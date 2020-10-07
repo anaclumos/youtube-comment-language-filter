@@ -1,6 +1,11 @@
 # Updates
 ##### This list is also available on [GitHub](https://github.com/anaclumos/youtube-comment-language-filter/tree/master/docs/updates)
 
+## v1.3.3
+* Oct 7, 2020
+* Fixed: YouTube Updated Xpath.
+* Added: `.prettierrc`
+
 ## v1.3.2
 * June 2, 2020
 * Added: Option to hide update notifications
