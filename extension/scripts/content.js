@@ -31,7 +31,7 @@ function onlyShow(StartCharset, EndCharset) {
     commentNum++
     CLFFooter.textContent = shownCommentNum + ' / ' + commentNum
     var commentString =
-      commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[2].innerText
+      commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
       commentList[i].style = 'display: none'
     } else {
