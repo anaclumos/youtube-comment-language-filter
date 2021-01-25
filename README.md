@@ -1,7 +1,6 @@
-<img src = "extension/images/min-icon512.png" width = "64px">
+<img src = "v1/images/min-icon512.png" width = "64px">
 
 # YouTube Comment Language Filter
-
 
 <a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
 <img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" height="75px" alt = "Available on the Chrome Web Store">
@@ -14,12 +13,13 @@
 ## Currently supported
 
 In alphabetical order,
-* Chinese characters (漢字)
-* English
-* Japanese characters (仮名)
-* Korean characters (한글)
-* [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
-* Contributions are welcomed!
+
+- Chinese characters (漢字)
+- English
+- Japanese characters (仮名)
+- Korean characters (한글)
+- [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
+- Contributions are welcomed!
 
 ## [License](LICENSE.md)
 

@@ -2,6 +2,11 @@
 
 ##### This list is also available on [GitHub](https://github.com/anaclumos/youtube-comment-language-filter/tree/master/docs/updates)
 
+## v1.3.6
+
+- Jan 9th, 2021
+- Fix Inconsistency between Firefox and Chrome Stores
+
 ## v1.3.5
 
 - Jan 9th, 2021
