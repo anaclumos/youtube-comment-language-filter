@@ -2,7 +2,7 @@
 
 ##### This list is also available on [GitHub](https://github.com/anaclumos/youtube-comment-language-filter/tree/master/docs/updates)
 
-## v1.3.6
+## v1.3.7
 
 - May 20th, 2021
 - Fixed: YouTube Updated Several Xpaths.
