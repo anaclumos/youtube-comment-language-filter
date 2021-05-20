@@ -4,6 +4,12 @@
 
 ## v1.3.6
 
+- May 20th, 2021
+- Fixed: YouTube Updated Several Xpaths.
+- Use `commentList[i].querySelector('#content-text').innerText`
+
+## v1.3.6
+
 - Jan 9th, 2021
 - Fix Inconsistency between Firefox and Chrome Stores
 
