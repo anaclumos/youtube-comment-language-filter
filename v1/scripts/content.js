@@ -30,8 +30,8 @@ function onlyShow(StartCharset, EndCharset) {
   for (var i = commentNum; i < commentList.length; i++) {
     commentNum++
     CLFFooter.textContent = shownCommentNum + ' / ' + commentNum
-    var commentString =
-      commentList[i].childNodes[1].childNodes[1].childNodes[3].childNodes[3].childNodes[1].innerText
+    var commentString = commentList[i].querySelector('#content-text').innerText
+    console.log(commentString)
     if (!containsSelectedLang(commentString, StartCharset, EndCharset)) {
       commentList[i].style = 'display: none'
     } else {
@@ -106,7 +106,7 @@ async function main(loc) {
       CLFFooter.textContent = 'All comments'
       ;(function insertEl() {
         var meta = document.evaluate(
-          '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[6]',
+          '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[7]',
           document,
           null,
           XPathResult.FIRST_ORDERED_NODE_TYPE,

@@ -10,8 +10,8 @@
     "512": "images/min-icon512.png",
     "1024": "images/min-icon1024.png"
   },
-  "version": "1.3.6",
-  "description": "Only see YouTube comments in selected languages",
+  "version": "1.3.7",
+  "description": "YouTube Comments in Specific Language",
   "author": "Sunghyun Cho",
   "background": {
     "scripts": ["scripts/background.js"],
