@@ -1,26 +1,19 @@
-<img src = "v1/images/min-icon512.png" width = "64px">
+## Note
 
-# YouTube Comment Language Filter
+- Thank you for the love and support.
+- I am no longer maintaining this project.
+- If you want to fork & improve this project, please feel free to do so.
 
-<a href = "https://chrome.google.com/webstore/detail/youtube-comment-language/pliobnchkbenbollnjaaojhbjkjgfkni" target='_blank' rel='noopener'>
-<img src = "projfiles/chrome-web-store-banner/min-ChromeWebStore_BadgeWBorder.png" height="75px" alt = "Available on the Chrome Web Store">
-</a>
+## But why?
 
-<a href = "https://addons.mozilla.org/addon/yclf/" target='_blank' rel='noopener'>
-<img src = "projfiles/firefox-addons-banner/min-Firefox-Get-The-Addon-Badge.png" height="75px" alt = "Available on the Firefox Add-on Store">
-</a>
+- YouTube now has [comment translations](https://9to5google.com/2021/09/15/youtube-on-ios-android-tests-instant-comment-translations-for-premium-subscribers/).
+- Google now forces [MV3](https://developer.chrome.com/docs/extensions/mv3/mv2-sunset/) & [GA4](https://support.google.com/analytics/answer/11583528). I have no interest in implementing those.
 
-## Currently supported
+## Some memorable stuffs...
 
-In alphabetical order,
+- Chrome: ★ 4.61, 2,683 Weekly Active Users
+- Firefox: ★ 5.00, 56 Weekly Active Users
 
-- Chinese characters (漢字)
-- English
-- Japanese characters (仮名)
-- Korean characters (한글)
-- [More to be added](https://github.com/anaclumos/youtube-comment-language-filter/issues/2)
-- Contributions are welcomed!
+<img width="618" alt="image" src="https://user-images.githubusercontent.com/31657298/165171719-b8e041f7-045e-4812-86a4-67b0a887d9fc.png">
 
-## [License](LICENSE.md)
-
-MIT License
+- Got Featured @ Chrome Store!
